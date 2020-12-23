@@ -1,0 +1,77 @@
+.app-wrapper {
+   display: grid;
+   margin: 0 auto;
+   width: 1250px;
+   grid-template-areas:
+      "h h"
+      "n с";
+   grid-template-rows: 60px 1fr;
+   grid-template-columns: 2fr 10fr;
+   /*grid-gap: 10px;*/
+}
+
+.header {
+   display: flex;
+   grid-area: h;
+   background-color: white;
+}
+
+.header .header__logo {
+   width: 60px;
+   height: 100%;
+}
+
+.header .header__name {
+   margin: 0;
+   padding: 0;
+   margin: 5px 0px 0px 0px;
+}
+
+.nav {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   grid-area: n;
+   background-color: white;
+}
+
+.nav .nav__profile {
+   margin: 20px 0px 5px 0px;
+}
+
+.nav .nav__messages {
+   margin: 0px 0px 5px 0px;
+}
+
+.nav .nav__news {
+   margin: 0px 0px 5px 0px;
+}
+
+.nav .nav__music {
+   margin: 0px 0px 5px 0px;
+}
+
+.nav .nav-active {
+   text-decoration: underline;
+}
+
+.link-nav {
+   color: rgb(64, 118, 218);
+   font-size: 20px;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.link-nav:hover {
+   color: black;
+}
+
+.content {
+   /*grid-area: c;*/
+   background-color: yellow;
+}
+
+.content img {
+   width: 100%;
+   height: 200px;
+}
