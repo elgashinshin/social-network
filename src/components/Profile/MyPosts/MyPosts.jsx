@@ -1,18 +1,18 @@
 import React from 'react';
-import mp from './MyPosts.module.css';
+import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 const MyPosts = () => {
     return (
-        <div>
-            my post
-            <div>
-                <textarea></textarea>
-                <button>Add post</button>
-                <button>Remove</button>
+        <div className={s.posts}>
+            <div className={s.title}>My posts</div>
+            <div className={s.wrapper}>
+                <textarea className={s.text} placeholder='type the text'></textarea>
+                <button className={`${s.add} ${s.btn}`}>Add post</button>
+                <button className={`${s.remove} ${s.btn}`}>Remove</button>
             </div>
-            <div>
-                <Post post='Круто!' like='2'/>
+            <div className={s.allPosts}>
+                <Post post='YOU DIED!' like='2'/>
                 <Post post='Мой первый пост' like='15'/>
             </div>
         </div>

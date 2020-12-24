@@ -1,0 +1,47 @@
+.posts {
+    float: right;
+    overflow: hidden;
+}
+
+.title {
+    font-size: 20px;
+}
+
+.wrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.text {
+    display: block;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    font-size: 17px;
+    resize: none;
+    border: none;
+    outline-color: #fac3c3;
+    width: 570px;
+    height: 40px;
+}
+
+.add {
+    float: right;
+    margin-left: 10px;
+}
+
+.remove {
+    float: right;
+}
+
+.btn {
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: white;
+    border-color: #fd3030;
+    border-radius: 5px;
+    border-width: 2px;
+    color: #f69f9f;
+}

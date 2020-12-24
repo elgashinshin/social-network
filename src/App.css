@@ -11,6 +11,7 @@
 }
 
 .app-wrapper__content {
+   padding: 10px;
    max-width: 1033.33px;
-   background-color: yellow;
+   background-color: rgba(252, 219, 203, 0.18);
 }
