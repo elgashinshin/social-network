@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    grid-area: h;
+    background-color: white;
+}
+
+.header .logo {
+    width: 60px;
+    height: 100%;
+}
+
+.header .name {
+    margin: 0;
+    padding: 0;
+    margin: 5px 0px 0px 0px;
+}

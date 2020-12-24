@@ -1,0 +1,42 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-area: n;
+    background-color: white;
+}
+
+.profile {
+    margin: 20px 0px 5px 0px;
+}
+
+.messages {
+    margin: 0px 0px 5px 0px;
+}
+
+.news {
+    margin: 0px 0px 5px 0px;
+}
+
+.music {
+    margin: 0px 0px 5px 0px;
+}
+
+.link.active {
+    text-decoration: underline;
+}
+
+.link {
+    color: rgb(64, 118, 218);
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link:hover {
+    color: black;
+}
+
+.settings {
+    margin-top: 20px;
+}
