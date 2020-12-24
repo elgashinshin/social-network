@@ -10,7 +10,7 @@
    grid-gap: 10px;
 }
 
-.content {
+.app-wrapper__content {
    max-width: 1033.33px;
    background-color: yellow;
 }
