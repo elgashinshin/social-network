@@ -16,13 +16,13 @@ const App = (props) => {
                 <Header/>
                 <Navbar/>
 
-                <div className='app-wrapper__content'>
+                <main className='app-wrapper__content'>
                     <Route path='/profile' component={Profile}/>
                     <Route path='/messages' component={Dialogs}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
-                </div>
+                </main>
             </div>
         </BrowserRouter>
     );

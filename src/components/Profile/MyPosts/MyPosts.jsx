@@ -9,7 +9,6 @@ const MyPosts = () => {
             <div className={s.wrapper}>
                 <textarea className={s.text} placeholder='type the text'></textarea>
                 <button className={`${s.add} ${s.btn}`}>Add post</button>
-                <button className={`${s.remove} ${s.btn}`}>Remove</button>
             </div>
             <div className={s.allPosts}>
                 <Post post='YOU DIED!' like='2'/>

@@ -23,6 +23,7 @@
     outline-color: #fac3c3;
     width: 570px;
     height: 40px;
+    border-radius: 5px;
 }
 
 .add {
@@ -30,18 +31,25 @@
     margin-left: 10px;
 }
 
-.remove {
-    float: right;
-}
-
 .btn {
-    width: 100px;
+    outline: none;
+    width: 97px;
+    border: none;
     height: 35px;
     font-size: 15px;
-    font-weight: bold;
-    background-color: white;
-    border-color: #fd3030;
+    /*font-weight: bold;*/
+    background-color: #fdaaaa;
+    /*border-color: #fd3030;*/
     border-radius: 5px;
     border-width: 2px;
-    color: #f69f9f;
+    color: black;
+    cursor: pointer;
+    /*color: white;*/
+    /*color: #f69f9f;*/
+    transition-duration: .10s;
+}
+
+.btn:hover {
+    background-color: #fd9696;
+    color: white;
 }

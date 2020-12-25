@@ -4,14 +4,14 @@
    width: 1250px;
    grid-template-areas:
       "h h"
-      "n с ";
+      "n main";
    grid-template-rows: 60px 1fr;
    grid-template-columns: 2fr 10fr;
    grid-gap: 10px;
 }
 
 .app-wrapper__content {
+   grid-area: main;
    padding: 10px;
-   max-width: 1033.33px;
    background-color: rgba(252, 219, 203, 0.18);
 }

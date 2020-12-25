@@ -1,0 +1,7 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+    .dialogs__wrapper {
+        margin-left: 10px;
+    }
