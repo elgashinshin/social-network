@@ -1,43 +1,28 @@
 import React from 'react';
-import s from './Dialogs.module.css';
-import {NavLink} from "react-router-dom";
+import style from './Dialogs.module.css';
+import DialogsItem from './DialogsItem/DialogsItem';
+import Messages from './Messages/Messages';
 
-const DialogsItem = (props) => {
-    let name = props.name;
-    let path = 'messages/'+props.id;
 
-    return(
-        <div className={s.dialogs__item}>
-            <NavLink to={path}>{name}</NavLink>
-        </div>
-    );
-}
 
-const Messages = (props) => {
-    let message = props.message;
-
-    return (
-        <div className={s.message}>{message}</div>
-    );
-
-}
 
 const Dialogs = (props) => {
+
+
+    let names = props.state.dialogs.map(n => <DialogsItem name={n.name} id={n.id}/>);
+    let messages = props.state.messages.map(m => <Messages message={m.message}/>);
+
+
     return (
-        <div>
-            <div className={s.dialogs}>
-                <div className={s.dialogs__wrapper}>
-                    <DialogsItem name='Darina' id='1'/>
-                    <DialogsItem name='Ilya' id='2'/>
-                    <DialogsItem name='Sanya' id='3'/>
-                    <DialogsItem name='Yura' id='4'/>
-                    <a href='/profile'>test</a>
+            <div className={style.dialogs}>
+                <div className={style.dialogs__wrapper}>
+                    {names}
                 </div>
-                <div className={s.messages}>
-                    <Messages message='Привет'/>
+                <div className={style.dialogs__messages}>
+                    {messages}
+                    <input placeholder='Write the message' className={style.text}/>
                 </div>
             </div>
-        </div>
     );
 }
 

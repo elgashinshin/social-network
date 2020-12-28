@@ -11,7 +11,8 @@
 }
 
 .app-wrapper__content {
+   border-radius: 7px;
    grid-area: main;
    padding: 10px;
-   background-color: rgba(252, 219, 203, 0.18);
+   background-color: rgba(98, 98, 98, 0.22);
 }

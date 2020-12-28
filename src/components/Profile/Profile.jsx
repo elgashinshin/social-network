@@ -1,19 +1,19 @@
 import React from 'react';
-import p from './Profile.module.css';
+import styles from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div>
             <div>
-                <img className={p.background} src='https://i.ytimg.com/vi/-ZGlaAxB7nI/maxresdefault.jpg'></img>
+                <img className={styles.background} src='https://i.ytimg.com/vi/-ZGlaAxB7nI/maxresdefault.jpg'></img>
             </div>
 
-            <div className={p.wrapper}>
+            <div className={styles.wrapper}>
                 <ProfileInfo/>
             </div>
-            <MyPosts/>
+            <MyPosts post={props.state.posts} />
         </div>
     );
 }

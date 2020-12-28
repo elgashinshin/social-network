@@ -1,18 +1,22 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+
+    let postsElement = props.post.map(p => <Post post={p.post} like={p.likeCount}/>);
+
     return (
-        <div className={s.posts}>
-            <div className={s.title}>My posts</div>
-            <div className={s.wrapper}>
-                <textarea className={s.text} placeholder='type the text'></textarea>
-                <button className={`${s.add} ${s.btn}`}>Add post</button>
+        <div className={styles.posts}>
+            <div className={styles.title}>My posts</div>
+            <div className={styles.wrapper}>
+                <textarea className={styles.text} placeholder='Write the post'></textarea>
+                <button className={`${styles.add} ${styles.btn}`}>Add post</button>
             </div>
-            <div className={s.allPosts}>
-                <Post post='YOU DIED!' like='2'/>
-                <Post post='Мой первый пост' like='15'/>
+            <div className={styles.allPosts}>
+                {postsElement}
+                {/*<Post post='YOU DIED!' like='2'/>*/}
+                {/*<Post post='Мой первый пост' like='15'/>*/}
             </div>
         </div>
     );

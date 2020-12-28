@@ -1,7 +1,25 @@
+
+
 .dialogs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 4fr;
 }
     .dialogs__wrapper {
+        /*width: 30%;*/
         margin-left: 10px;
+        border-right: 3px solid white;
+        margin-right: 10px;
+
+    }
+    .dialogs__messages{
+        font-size: 20px;
+    }
+
+    .text {
+        margin-top: 50px;
+        padding-left: 10px;
+        width: 80%;
+        height: 30px;
+        outline: none;
+        font-size: 20px;
     }

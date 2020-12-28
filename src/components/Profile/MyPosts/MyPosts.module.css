@@ -15,15 +15,18 @@
 
 .text {
     display: block;
+    box-sizing: border-box;
     margin-bottom: 15px;
     padding-left: 10px;
     font-size: 17px;
     resize: none;
     border: none;
+    outline: inherit;
     outline-color: #fac3c3;
     width: 570px;
     height: 40px;
     border-radius: 5px;
+    padding-top: 8px;
 }
 
 .add {

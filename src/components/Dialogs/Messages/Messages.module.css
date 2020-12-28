@@ -1,0 +1,10 @@
+.messageWrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.avatar {
+    width: 50px;
+    border-radius: 50px;
+    margin-right: 10px;
+}

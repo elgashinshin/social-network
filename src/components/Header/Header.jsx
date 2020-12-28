@@ -1,11 +1,11 @@
 import React from 'react';
-import h from './Header.module.css';
+import styles from './Header.module.css';
 
 const Header = () => {
    return (
-      <header className={h.header}>
-         <img className={h.logo} src="https://image.freepik.com/free-vector/letter-e-with-arrow-logo-template_23987-61.jpg"></img>
-         <h1 className={h.name}>Elgasocial</h1>
+      <header className={styles.header}>
+         <img className={styles.logo} src="https://image.freepik.com/free-vector/letter-e-with-arrow-logo-template_23987-61.jpg"></img>
+         <h1 className={styles.name}>Elgasocial</h1>
       </header>
    );
 }
