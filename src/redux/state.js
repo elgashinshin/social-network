@@ -32,6 +32,7 @@ export let sendMessage = (message) => {
     }
 
     state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessage = '';
     render(state);
 }
 
