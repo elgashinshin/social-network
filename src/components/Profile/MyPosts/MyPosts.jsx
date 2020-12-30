@@ -15,8 +15,6 @@ const MyPosts = (props) => {
             </div>
             <div className={styles.allPosts}>
                 {postsElement}
-                {/*<Post post='YOU DIED!' like='2'/>*/}
-                {/*<Post post='Мой первый пост' like='15'/>*/}
             </div>
         </div>
     );

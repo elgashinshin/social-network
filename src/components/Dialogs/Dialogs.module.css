@@ -15,11 +15,24 @@
         font-size: 20px;
     }
 
-    .text {
-        margin-top: 50px;
-        padding-left: 10px;
-        width: 80%;
-        height: 30px;
-        outline: none;
-        font-size: 20px;
+    .wrapper {
+        display: flex;
+        align-items: center;
+        margin-top: 65px;
     }
+        .text {
+            padding-left: 10px;
+            width: 80%;
+            height: 30px;
+            outline: none;
+            font-size: 20px;
+        }
+        .send {
+            margin-left: 10px;
+            height: 35px;
+            background-color: white;
+            border-radius: 2px;
+            border: 1px solid grey;
+            outline: none;
+            cursor: pointer;
+        }

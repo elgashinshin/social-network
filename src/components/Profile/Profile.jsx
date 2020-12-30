@@ -7,7 +7,7 @@ const Profile = (props) => {
     return (
         <div>
             <div>
-                <img className={styles.background} src='https://i.ytimg.com/vi/-ZGlaAxB7nI/maxresdefault.jpg'></img>
+                <img className={styles.background} src='https://i.ytimg.com/vi/-ZGlaAxB7nI/maxresdefault.jpg'/>
             </div>
 
             <div className={styles.wrapper}>

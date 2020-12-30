@@ -7,7 +7,18 @@ import Messages from './Messages/Messages';
 
 
 const Dialogs = (props) => {
+    let message = React.createRef();
 
+    let sendMessage = () => {
+        let messageValue = props.newMessage;
+        props.sendMessage(messageValue);
+        props.updateNewMessage('');
+    }
+
+    let updateNewMessage = () => {
+        let text = message.current.value;
+        props.updateNewMessage(text);
+    }
 
     let names = props.state.dialogs.map(n => <DialogsItem name={n.name} id={n.id}/>);
     let messages = props.state.messages.map(m => <Messages message={m.message}/>);
@@ -20,7 +31,21 @@ const Dialogs = (props) => {
                 </div>
                 <div className={style.dialogs__messages}>
                     {messages}
-                    <input placeholder='Write the message' className={style.text}/>
+                    <div className={style.wrapper}>
+                        <input
+                            onChange={updateNewMessage}
+                            value={props.newMessage}
+                            ref={message}
+                            className={style.text}
+                        />
+                        <button
+                            onClick={sendMessage}
+                            className={style.send}
+                        >
+                            Отправить
+                        </button>
+                    </div>
+
                 </div>
             </div>
     );
