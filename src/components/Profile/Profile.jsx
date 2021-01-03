@@ -13,7 +13,7 @@ const Profile = (props) => {
             <div className={styles.wrapper}>
                 <ProfileInfo/>
             </div>
-            <MyPosts post={props.state.posts} />
+            <MyPosts post={props.profilePage.posts} />
         </div>
     );
 }

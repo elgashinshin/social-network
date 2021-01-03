@@ -10,7 +10,7 @@ const MyPosts = (props) => {
         <div className={styles.posts}>
             <div className={styles.title}>My posts</div>
             <div className={styles.wrapper}>
-                <textarea className={styles.text} placeholder='Write the post'></textarea>
+                <textarea className={styles.text} placeholder='Write the post'/>
                 <button className={`${styles.add} ${styles.btn}`}>Add post</button>
             </div>
             <div className={styles.allPosts}>

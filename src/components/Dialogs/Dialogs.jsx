@@ -2,8 +2,7 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import DialogsItem from './DialogsItem/DialogsItem';
 import Messages from './Messages/Messages';
-
-
+import {sendMessageCreator, updateMessageTextCreator} from "../../redux/state";
 
 
 const Dialogs = (props) => {
@@ -11,42 +10,42 @@ const Dialogs = (props) => {
 
     let sendMessage = () => {
         let messageValue = props.newMessage;
-        props.sendMessage(messageValue);
+        props.dispatch(sendMessageCreator(messageValue));
     }
 
-    let updateNewMessage = () => {
+    let updateNewText = () => {
         let text = message.current.value;
-        props.updateNewMessage(text);
+        props.dispatch(updateMessageTextCreator(text));
     }
 
-    let names = props.state.dialogs.map(n => <DialogsItem name={n.name} id={n.id}/>);
-    let messages = props.state.messages.map(m => <Messages message={m.message}/>);
+    let names = props.dialogsPage.dialogs.map(n => <DialogsItem name={n.name} id={n.id}/>);
+    let messages = props.dialogsPage.messages.map(m => <Messages message={m.message}/>);
 
 
     return (
-            <div className={style.dialogs}>
-                <div className={style.dialogs__wrapper}>
-                    {names}
-                </div>
-                <div className={style.dialogs__messages}>
-                    {messages}
-                    <div className={style.wrapper}>
-                        <input
-                            onChange={updateNewMessage}
-                            value={props.newMessage}
-                            ref={message}
-                            className={style.text}
-                        />
-                        <button
-                            onClick={sendMessage}
-                            className={style.send}
-                        >
-                            Отправить
-                        </button>
-                    </div>
-
-                </div>
+        <div className={style.dialogs}>
+            <div className={style.dialogs__wrapper}>
+                {names}
             </div>
+            <div className={style.dialogs__messages}>
+                {messages}
+                <div className={style.wrapper}>
+                    <input
+                        onChange={updateNewText}
+                        value={props.newMessage}
+                        ref={message}
+                        className={style.text}
+                    />
+                    <button
+                        onClick={sendMessage}
+                        className={style.send}
+                    >
+                        Отправить
+                    </button>
+                </div>
+
+            </div>
+        </div>
     );
 }
 
