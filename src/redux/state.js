@@ -1,5 +1,8 @@
-let sendMessage = 'SEND-MESSAGE';
-let updateMessageText = 'UPDATE-MESSAGE-TEXT';
+let SEND_MESSAGE = 'SEND-MESSAGE';
+let UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
+
+let UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
+let ADD_POST = 'ADD-POST'
 
 let store = {
     _state: {
@@ -8,7 +11,8 @@ let store = {
                 {post: 'О_О', likeCount: 10},
                 {post: 'YOU DIED!', likeCount: 2},
                 {post: 'Мой первый пост', likeCount: 15}
-            ]
+            ],
+            newTextUpdate: ''
         },
         dialogsPage: {
             messages: [
@@ -37,7 +41,7 @@ let store = {
     },
     dispatch(action) {
         debugger;
-        if (action.type === sendMessage) {
+        if (action.type === SEND_MESSAGE) {
             let newMessage = {
                 id: 4,
                 message: action.message
@@ -46,14 +50,28 @@ let store = {
             this._state.dialogsPage.messages.push(newMessage);
             this._state.dialogsPage.newMessage = '';
             this._callSubscriber(this._state);
-        } else if (action.type === updateMessageText) {
+        } else if (action.type === UPDATE_MESSAGE_TEXT) {
             this._state.dialogsPage.newMessage = action.updateText;
+            this._callSubscriber(this._state);
+        } else if (action.type === ADD_POST) {
+            let newPost = {
+                post: action.textPost,
+                likeCount: 0
+            }
+
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newTextUpdate = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_POST_TEXT) {
+            this._state.profilePage.newTextUpdate = action.updateTextPost;
             this._callSubscriber(this._state);
         }
     }
 }
 
-export const sendMessageCreator = messageValue => ({type: sendMessage, message: messageValue});
-export const updateMessageTextCreator = text => ({type: updateMessageText, updateText: text});
+export const sendMessageCreator = messageValue => ({type: SEND_MESSAGE, message: messageValue});
+export const updateMessageTextCreator = text => ({type: UPDATE_MESSAGE_TEXT, updateText: text});
+export const addPostCreator = postValue => ({type: ADD_POST, textPost: postValue});
+export const updatePostTextCreator = postText => ({type: UPDATE_POST_TEXT, updateTextPost: postText});
 
 export default store;

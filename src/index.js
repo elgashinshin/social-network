@@ -6,13 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import store from "./redux/state";
 import {BrowserRouter} from "react-router-dom";
 
-let bd = store
-
 let render = (state) => {
     ReactDOM.render(
         <BrowserRouter>
         <App
-            state={store.getState()}
+            state={state}
             dispatch={store.dispatch.bind(store)}
         />
         </BrowserRouter>

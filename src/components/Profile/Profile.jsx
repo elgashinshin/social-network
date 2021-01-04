@@ -4,6 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
+
     return (
         <div>
             <div>
@@ -11,9 +12,15 @@ const Profile = (props) => {
             </div>
 
             <div className={styles.wrapper}>
-                <ProfileInfo/>
+                <ProfileInfo
+
+                />
             </div>
-            <MyPosts post={props.profilePage.posts} />
+            <MyPosts
+                post={props.profilePage.posts}
+                updatePostText={props.profilePage.newTextUpdate}
+                dispatch={props.dispatch}
+            />
         </div>
     );
 }

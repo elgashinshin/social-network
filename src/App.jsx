@@ -16,9 +16,10 @@ const App = (props) => {
                 <NavBar/>
 
                 <main className='app-wrapper__content'>
-                    <Route path='/profile' component={() =>
+                    <Route path='/profile' render={() =>
                         <Profile
                             profilePage={props.state.profilePage}
+                            dispatch={props.dispatch}
                         />
                     }/>
                     <Route path='/messages' render={() =>
