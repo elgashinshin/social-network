@@ -1,4 +1,4 @@
-import dialogsReduced from "./dialogs-reducer";
+import dialogsReducer from "./dialogs-reducer";
 import profileReducer from "./profile-reducer";
 
 let store = {
@@ -37,8 +37,8 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        profileReducer(this._state.profilePage, action);
-        dialogsReduced(this._state.dialogsPage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.profilePage = dialogsReducer(this._state.dialogsPage, action);
         this._callSubscriber(this._state);
     }
 }

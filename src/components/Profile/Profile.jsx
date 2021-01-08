@@ -2,9 +2,10 @@ import React from 'react';
 import styles from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
-
+    debugger
     return (
         <div>
             <div>
@@ -12,14 +13,10 @@ const Profile = (props) => {
             </div>
 
             <div className={styles.wrapper}>
-                <ProfileInfo
-
-                />
+                <ProfileInfo />
             </div>
-            <MyPosts
-                post={props.profilePage.posts}
-                updatePostText={props.profilePage.newTextUpdate}
-                dispatch={props.dispatch}
+            <MyPostsContainer
+                store={props.store}
             />
         </div>
     );

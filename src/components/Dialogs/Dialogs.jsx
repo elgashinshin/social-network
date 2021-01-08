@@ -6,16 +6,15 @@ import {sendMessageCreator, updateMessageTextCreator} from "../../redux/dialogs-
 
 
 const Dialogs = (props) => {
-    let message = React.createRef();
 
     let sendMessage = () => {
         let messageValue = props.newMessage;
-        props.dispatch(sendMessageCreator(messageValue));
+        props.sendMessage(messageValue);
     }
 
-    let updateNewText = () => {
-        let text = message.current.value;
-        props.dispatch(updateMessageTextCreator(text));
+    let updateNewText = (ev) => {
+        let text = ev.target.value;
+        props.updateNewText(text)
     }
 
     let names = props.dialogsPage.dialogs.map(n => <DialogsItem name={n.name} id={n.id}/>);
@@ -33,7 +32,6 @@ const Dialogs = (props) => {
                     <input
                         onChange={updateNewText}
                         value={props.newMessage}
-                        ref={message}
                         className={style.text}
                     />
                     <button

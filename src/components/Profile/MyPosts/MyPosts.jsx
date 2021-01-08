@@ -6,12 +6,11 @@ import {addPostCreator, updatePostTextCreator} from "../../../redux/profile-redu
 const MyPosts = (props) => {
     let onTextPostChange = (ev) => {
         let textPost = ev.target.value;
-        console.log(textPost);
-        props.dispatch(updatePostTextCreator(textPost))
+        props.changeTextPost(textPost)
     };
     let addPost = () => {
-        let textPost = props.updatePostText;
-        props.dispatch(addPostCreator(textPost));
+        let textPost = props.updateText;
+        props.addPost(textPost);
     };
     let postsElement = props.post.map(p => <Post post={p.post} like={p.likeCount}/>);
 
@@ -19,7 +18,7 @@ const MyPosts = (props) => {
         <div className={styles.posts}>
             <div className={styles.title}>My posts</div>
             <div className={styles.wrapper}>
-                <textarea onChange={onTextPostChange} value={props.updatePostText} className={styles.text} placeholder='Write the post'/>
+                <textarea onChange={onTextPostChange} value={props.updateText} className={styles.text} placeholder='Write the post'/>
                 <button onClick={addPost} className={`${styles.add} ${styles.btn}`}>Add post</button>
             </div>
             <div className={styles.allPosts}>
