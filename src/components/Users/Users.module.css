@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.photo {
+    width: 75px;
+}
+.follow {
+    display: block;
+}
+.fullName {
+    margin-left: 10px;
+}
+.status{
+    margin-left: 10px;
+    font-weight: bold;
+}
+.country{
+    font-size: 15px;
+    margin-left: 10px;
+}
+.city {
+    font-size: 15px;
+    margin-left: 5px;
+}
