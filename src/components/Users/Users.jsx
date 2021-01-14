@@ -17,7 +17,6 @@ class Users extends React.Component {
 
     render() {
         let maxClickValue = Math.ceil(this.props.maxUsers / this.props.count);
-        console.log(maxClickValue);
         let onClickShowMore = () => {
             let currentPage = this.props.page;
             this.props.setPage(++currentPage);
