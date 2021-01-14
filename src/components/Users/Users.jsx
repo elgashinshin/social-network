@@ -26,11 +26,6 @@ class Users extends React.Component {
                     this.props.setUsers(response.data.items)
                 })
         }
-        let buttonTest = () => {
-            if (this.props.page === maxClickValue) {
-
-            }
-        }
         return (
             <div>
                 {
