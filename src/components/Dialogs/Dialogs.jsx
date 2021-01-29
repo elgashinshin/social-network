@@ -6,7 +6,6 @@ import {sendMessageCreator, updateMessageTextCreator} from "../../redux/dialogs-
 
 
 const Dialogs = (props) => {
-
     let sendMessage = () => {
         let messageValue = props.newMessage;
         props.sendMessage(messageValue);
