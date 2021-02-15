@@ -30,6 +30,10 @@
     background-color: #fd9696;
     color: white;
 }
+.follow:disabled {
+    background-color: #fdaaaa;
+    color: #625e5e;
+}
 .fullName {
     margin-left: 10px;
 }

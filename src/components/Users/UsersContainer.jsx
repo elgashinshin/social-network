@@ -1,7 +1,14 @@
 import {connect} from "react-redux";
-import {currentUsers, follow, isFetchingToggle, setPage, setUsers, unFollow} from "../../redux/users-reducer";
+import {
+    currentUsers,
+    follow,
+    isFetchingToggle,
+    setPage,
+    setUsers,
+    unFollow,
+    userIsFetching
+} from "../../redux/users-reducer";
 import React from "react";
-import * as axios from "axios";
 import Users from "./Users";
 import {usersAPI} from "../../api/api";
 
@@ -10,7 +17,6 @@ class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.isFetchingToggle(true);
         usersAPI.getUsers(this.props.page, this.props.count).then(data => {
-            debugger
             this.props.isFetchingToggle(false);
             this.props.setUsers(data.items);
             this.props.currentUsers(data.totalCount);
@@ -28,6 +34,8 @@ class UsersContainer extends React.Component {
             follow={this.props.follow}
             page={this.props.page}
             fetching={this.props.isFetching}
+            userIsFetching={this.props.userIsFetching}
+            userFetching={this.props.userFetching}
         />
     }
 
@@ -49,7 +57,8 @@ let mapStateToProps = (state) => {
         page: state.usersPage.page,
         count: state.usersPage.count,
         maxUsers: state.usersPage.maxUsers,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        userFetching: state.usersPage.userIsFetching
     }
 }
 
@@ -59,5 +68,6 @@ export default connect(mapStateToProps, {
     setUsers,
     setPage,
     currentUsers,
-    isFetchingToggle
+    isFetchingToggle,
+    userIsFetching
 })(UsersContainer);

@@ -1,16 +1,19 @@
-let FOLLOW = 'FOLLOW';
-let UN_FOLLOW = 'UNFOLLOW';
-let SET_USERS = 'SETUSERS';
-let SET_PAGE = 'SETPAGE';
-let SET_CURRENT_USERS = 'SETCURRENTUSERS';
-let IS_FETCHING = 'ISFETCHING';
+const FOLLOW = 'FOLLOW';
+const UN_FOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SETUSERS';
+const SET_PAGE = 'SETPAGE';
+const SET_CURRENT_USERS = 'SETCURRENTUSERS';
+const IS_FETCHING = 'ISFETCHING';
+const USER_IS_FETCHING = 'USERISFETCHING'
+
 
 let initialState = {
     users: [],
     page: 1,
     count: 5,
     maxUsers: 0,
-    isFetching: false
+    isFetching: false,
+    userIsFetching: []
 }
 
 let usersReducer = (state = initialState, action) => {
@@ -66,16 +69,23 @@ let usersReducer = (state = initialState, action) => {
                 isFetching: action.fetching
             }
 
+        case USER_IS_FETCHING:
+            return {
+                ...state,
+                userIsFetching: action.fetching ? [...state.userIsFetching, action.userId] : state.userIsFetching.filter(id => id !== action.userId)
+            }
+
         default:
             return state;
     }
 }
 
-export let follow = userId => ({type: FOLLOW, userId });
-export let unFollow = userId => ({type: UN_FOLLOW, userId });
-export let setUsers = users => ({type: SET_USERS, users});
-export let setPage = page => ({type: SET_PAGE, page});
-export let currentUsers = maxUsers => ({type: SET_CURRENT_USERS, maxUsers});
-export let isFetchingToggle = fetching => ({type: IS_FETCHING, fetching})
+export const follow = userId => ({type: FOLLOW, userId });
+export const unFollow = userId => ({type: UN_FOLLOW, userId });
+export const setUsers = users => ({type: SET_USERS, users});
+export const setPage = page => ({type: SET_PAGE, page});
+export const currentUsers = maxUsers => ({type: SET_CURRENT_USERS, maxUsers});
+export const isFetchingToggle = fetching => ({type: IS_FETCHING, fetching});
+export const userIsFetching = (fetching, userId) => ({type: USER_IS_FETCHING, fetching, userId});
 
 export default usersReducer;

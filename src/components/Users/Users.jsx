@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "./Users.module.css";
 import userImage from '../../assects/user_image.png'
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
+
 import * as axios from "axios";
 
 let Users = (props) => {
@@ -19,7 +19,8 @@ let Users = (props) => {
                             </NavLink>
                             {
                                 u.followed
-                                    ? <button className={styles.follow} onClick={() => {
+                                    ? <button disabled={props.userFetching.some(id => id === u.id)} className={styles.follow} onClick={() => {
+                                        props.userIsFetching(true, u.id)
                                         axios
                                             .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
                                                 headers: {
@@ -28,14 +29,16 @@ let Users = (props) => {
                                                 withCredentials: true
                                             })
                                             .then(response => {
-                                                debugger
                                                 if (response.data.resultCode === 0) {
                                                     props.unfollow(u.id);
+
                                                 }
+                                                props.userIsFetching(false, u.id)
                                             })
 
                                     }}>Unfollow</button>
-                                    : <button className={styles.follow} onClick={() => {
+                                    : <button disabled={props.userFetching.some(id => id === u.id)} className={styles.follow} onClick={() => {
+                                        props.userIsFetching(true, u.id)
                                         axios
                                             .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{
                                             headers: {
@@ -44,10 +47,11 @@ let Users = (props) => {
                                             withCredentials: true
                                         })
                                             .then(response => {
-                                                debugger
                                                 if (response.data.resultCode === 0) {
                                                     props.follow(u.id);
+
                                                 }
+                                                props.userIsFetching(false, u.id)
                                             })
                                     }}>Follow</button>
                             }
