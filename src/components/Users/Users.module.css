@@ -3,12 +3,32 @@
     margin-bottom: 20px;
     align-items: center;
 }
-
+.userImageWrapper {
+    display: flex;
+    flex-direction: column;
+}
 .photo {
     width: 75px;
 }
 .follow {
     display: block;
+    margin-top: 5px;
+    outline: none;
+    width: 75px;
+    border: none;
+    height: 25px;
+    font-size: 15px;
+    background-color: #fdaaaa;
+    border-radius: 5px;
+    border-width: 2px;
+    color: black;
+    cursor: pointer;
+    transition-duration: .10s;
+    user-select: none;
+}
+.follow:hover {
+    background-color: #fd9696;
+    color: white;
 }
 .fullName {
     margin-left: 10px;

@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from "./Users.module.css";
 import userImage from '../../assects/user_image.png'
+import {NavLink} from "react-router-dom";
+import {usersAPI} from "../../api/api";
+import * as axios from "axios";
 
 let Users = (props) => {
-debugger
     let maxClickValue = Math.ceil(props.maxUsers / props.count);
     console.log(maxClickValue);
     return (
@@ -11,15 +13,42 @@ debugger
             {
                props.users.map(u =>
                     <div key={u.id} className={styles.wrapper}>
-                        <div>
-                            <img src={u.photos.small != null ? u.photos.small : userImage} className={styles.photo}/>
+                        <div className={styles.userImageWrapper}>
+                            <NavLink to={`/profile/${u.id}`}>
+                                <img src={u.photos.small != null ? u.photos.small : userImage} className={styles.photo}/>
+                            </NavLink>
                             {
                                 u.followed
                                     ? <button className={styles.follow} onClick={() => {
-                                        props.unfollow(u.id)
+                                        axios
+                                            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
+                                                headers: {
+                                                    'API-KEY': '443c2081-68e1-47f1-8871-0ff827aa90d5'
+                                                },
+                                                withCredentials: true
+                                            })
+                                            .then(response => {
+                                                debugger
+                                                if (response.data.resultCode === 0) {
+                                                    props.unfollow(u.id);
+                                                }
+                                            })
+
                                     }}>Unfollow</button>
                                     : <button className={styles.follow} onClick={() => {
-                                        props.follow(u.id)
+                                        axios
+                                            .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{
+                                            headers: {
+                                                'API-KEY': '443c2081-68e1-47f1-8871-0ff827aa90d5'
+                                            },
+                                            withCredentials: true
+                                        })
+                                            .then(response => {
+                                                debugger
+                                                if (response.data.resultCode === 0) {
+                                                    props.follow(u.id);
+                                                }
+                                            })
                                     }}>Follow</button>
                             }
                         </div>
@@ -30,7 +59,10 @@ debugger
                     </div>
                 )
             }
-            <button onClick={(e) => {props.showMoreUsers()}}>Show more</button>
+            {
+                props.fetching ? 'Loading...' : <button onClick={(e) => {props.showMoreUsers()}}>Show more</button>
+            }
+
 
 
         </div>

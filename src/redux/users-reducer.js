@@ -3,12 +3,14 @@ let UN_FOLLOW = 'UNFOLLOW';
 let SET_USERS = 'SETUSERS';
 let SET_PAGE = 'SETPAGE';
 let SET_CURRENT_USERS = 'SETCURRENTUSERS';
+let IS_FETCHING = 'ISFETCHING';
 
 let initialState = {
     users: [],
     page: 1,
     count: 5,
-    maxUsers: 0
+    maxUsers: 0,
+    isFetching: false
 }
 
 let usersReducer = (state = initialState, action) => {
@@ -58,15 +60,22 @@ let usersReducer = (state = initialState, action) => {
                 maxUsers: action.maxUsers
             }
 
+        case IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.fetching
+            }
+
         default:
             return state;
     }
 }
 
-export let followAC = userId => ({type: FOLLOW, userId });
-export let unFollowAC = userId => ({type: UN_FOLLOW, userId });
-export let setUsersAC = users => ({type: SET_USERS, users});
-export let setPageAC = page => ({type: SET_PAGE, page});
-export let currentUsersAC = maxUsers => ({type: SET_CURRENT_USERS, maxUsers});
+export let follow = userId => ({type: FOLLOW, userId });
+export let unFollow = userId => ({type: UN_FOLLOW, userId });
+export let setUsers = users => ({type: SET_USERS, users});
+export let setPage = page => ({type: SET_PAGE, page});
+export let currentUsers = maxUsers => ({type: SET_CURRENT_USERS, maxUsers});
+export let isFetchingToggle = fetching => ({type: IS_FETCHING, fetching})
 
 export default usersReducer;

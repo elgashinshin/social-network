@@ -5,7 +5,6 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
-    debugger
     return (
         <div>
             <div>
@@ -13,7 +12,7 @@ const Profile = (props) => {
             </div>
 
             <div className={styles.wrapper}>
-                <ProfileInfo />
+                <ProfileInfo profile = {props.profile}/>
             </div>
             <MyPostsContainer
                 store={props.store}

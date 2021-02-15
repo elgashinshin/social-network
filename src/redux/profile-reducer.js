@@ -1,5 +1,6 @@
-let UPDATE_POST_TEXT = 'UPDATE-POST-TEXT'
-let ADD_POST = 'ADD-POST'
+let UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
+let ADD_POST = 'ADD-POST';
+let SET_USER = 'SETUSER';
 
 let initialState = {
     posts: [
@@ -7,7 +8,8 @@ let initialState = {
         {post: 'YOU DIED!', likeCount: 2},
         {post: 'Мой первый пост', likeCount: 15}
     ],
-    newTextUpdate: ''
+    newTextUpdate: '',
+    profile: null
 }
 
 let profileReducer = (state = initialState, action) => {
@@ -26,6 +28,11 @@ let profileReducer = (state = initialState, action) => {
                 newTextUpdate: action.updateTextPost
             }
 
+        case SET_USER:
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state;
     }
@@ -33,5 +40,6 @@ let profileReducer = (state = initialState, action) => {
 
 export const addPostCreator = postValue => ({type: ADD_POST, textPost: postValue});
 export const updatePostTextCreator = postText => ({type: UPDATE_POST_TEXT, updateTextPost: postText});
+export const setUser = profile => ({type: SET_USER, profile});
 
 export default profileReducer;

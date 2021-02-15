@@ -40,15 +40,11 @@
     border: none;
     height: 35px;
     font-size: 15px;
-    /*font-weight: bold;*/
     background-color: #fdaaaa;
-    /*border-color: #fd3030;*/
     border-radius: 5px;
     border-width: 2px;
     color: black;
     cursor: pointer;
-    /*color: white;*/
-    /*color: #f69f9f;*/
     transition-duration: .10s;
 }
 
