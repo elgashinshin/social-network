@@ -1,26 +1,23 @@
 import {connect} from "react-redux";
 import {
     currentUsers,
-    follow,
+    followSuccess,
     isFetchingToggle,
     setPage,
     setUsers,
-    unFollow,
-    userIsFetching
+    unFollowSuccess,
+    userIsFetching,
+    getUsers,
+    showMoreUsers,
+    follow, unFollow
 } from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
-import {usersAPI} from "../../api/api";
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.isFetchingToggle(true);
-        usersAPI.getUsers(this.props.page, this.props.count).then(data => {
-            this.props.isFetchingToggle(false);
-            this.props.setUsers(data.items);
-            this.props.currentUsers(data.totalCount);
-        })
+        this.props.getUsers(this.props.page, this.props.count);
     }
 
     render() {
@@ -30,7 +27,7 @@ class UsersContainer extends React.Component {
             maxUsers={this.props.maxUsers}
             count={this.props.count}
             users={this.props.users}
-            unfollow={this.props.unFollow}
+            unFollow={this.props.unFollow}
             follow={this.props.follow}
             page={this.props.page}
             fetching={this.props.isFetching}
@@ -40,13 +37,7 @@ class UsersContainer extends React.Component {
     }
 
     showMoreUsers() {
-        this.props.isFetchingToggle(true);
-        let currentPage = this.props.page;
-        this.props.setPage(++currentPage);
-        usersAPI.getUsers(currentPage, this.props.count).then(data => {
-            this.props.isFetchingToggle(false);
-            this.props.setUsers(data.items)
-        })
+        this.props.showMoreUsers(this.props.page, this.props.count);
     }
 
 }
@@ -63,11 +54,15 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    follow,
-    unFollow,
+    followSuccess,
+    unFollowSuccess,
     setUsers,
     setPage,
     currentUsers,
     isFetchingToggle,
-    userIsFetching
+    userIsFetching,
+    getUsers,
+    showMoreUsers,
+    follow,
+    unFollow
 })(UsersContainer);

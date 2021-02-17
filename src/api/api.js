@@ -20,7 +20,31 @@ export const usersAPI = {
         return instance
             .post(`follow/${userId}`)
             .then(response => {
-                return response.data;
+                return response.data
             })
+    },
+    unFollow(userId) {
+        return instance
+            .delete(`follow/${userId}`)
+            .then(response => {
+                return response.data
+            })
+    }
+}
+
+export const headerAPI = {
+    setLogin() {
+        return instance
+        .get('auth/me')
+            .then(response => {
+                return response.data
+            })
+    }
+}
+
+export const profileAPI = {
+    setUserId(userId) {
+        return instance
+            .get(`profile/${userId}`)
     }
 }

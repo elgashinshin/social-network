@@ -1,3 +1,5 @@
+import {headerAPI} from "../api/api";
+
 const USER_AUTHORIZED = 'USER-AUTHORIZED';
 const SET_LOGIN = 'SET_LOGIN';
 
@@ -26,5 +28,15 @@ let headerReducer = (state = initialState, action) => {
 
 export const checkUser = auth => ({type: USER_AUTHORIZED, auth});
 export const setLogin = login => ({type: SET_LOGIN, login});
+
+export const setUser = () => {
+    return (dispatch) => {
+        headerAPI.setLogin()
+            .then(data => {
+                dispatch(checkUser(data.resultCode));
+                dispatch(setLogin(data.data.login));
+            })
+    }
+}
 
 export default headerReducer;

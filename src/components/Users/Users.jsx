@@ -3,8 +3,6 @@ import styles from "./Users.module.css";
 import userImage from '../../assects/user_image.png'
 import {NavLink} from "react-router-dom";
 
-import * as axios from "axios";
-
 let Users = (props) => {
     let maxClickValue = Math.ceil(props.maxUsers / props.count);
     console.log(maxClickValue);
@@ -20,39 +18,10 @@ let Users = (props) => {
                             {
                                 u.followed
                                     ? <button disabled={props.userFetching.some(id => id === u.id)} className={styles.follow} onClick={() => {
-                                        props.userIsFetching(true, u.id)
-                                        axios
-                                            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
-                                                headers: {
-                                                    'API-KEY': '443c2081-68e1-47f1-8871-0ff827aa90d5'
-                                                },
-                                                withCredentials: true
-                                            })
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
-                                                    props.unfollow(u.id);
-
-                                                }
-                                                props.userIsFetching(false, u.id)
-                                            })
-
+                                        props.unFollow(u.id)
                                     }}>Unfollow</button>
                                     : <button disabled={props.userFetching.some(id => id === u.id)} className={styles.follow} onClick={() => {
-                                        props.userIsFetching(true, u.id)
-                                        axios
-                                            .post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{
-                                            headers: {
-                                                'API-KEY': '443c2081-68e1-47f1-8871-0ff827aa90d5'
-                                            },
-                                            withCredentials: true
-                                        })
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
-                                                    props.follow(u.id);
-
-                                                }
-                                                props.userIsFetching(false, u.id)
-                                            })
+                                        props.follow(u.id)
                                     }}>Follow</button>
                             }
                         </div>

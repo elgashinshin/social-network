@@ -1,3 +1,5 @@
+import {profileAPI} from "../api/api";
+
 let UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 let ADD_POST = 'ADD-POST';
 let SET_USER = 'SETUSER';
@@ -40,6 +42,15 @@ let profileReducer = (state = initialState, action) => {
 
 export const addPostCreator = postValue => ({type: ADD_POST, textPost: postValue});
 export const updatePostTextCreator = postText => ({type: UPDATE_POST_TEXT, updateTextPost: postText});
-export const setUser = profile => ({type: SET_USER, profile});
+export const setUserSuccess = profile => ({type: SET_USER, profile});
+
+export const setUserId = (userId) => {
+    return (dispatch) => {
+        profileAPI.setUserId(userId)
+            .then(data => {
+                dispatch(setUserSuccess(data.data))
+            })
+    }
+}
 
 export default profileReducer;
