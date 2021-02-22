@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {getStatus, setStatusProfile} from "../../redux/profile-reducer";
 
 const Profile = (props) => {
     return (
@@ -11,7 +12,7 @@ const Profile = (props) => {
             </div>
 
             <div className={styles.wrapper}>
-                <ProfileInfo profile = {props.profile}/>
+                <ProfileInfo profile = {props.profile} status = {props.status} setStatus = {props.setStatusProfile}/>
             </div>
             <MyPostsContainer
                 store={props.store}

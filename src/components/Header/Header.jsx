@@ -9,7 +9,7 @@ const Header = (props) => {
                 <h1 className={styles.name}>Elgasocial</h1>
             </div>
             {
-                props.auth === 1 ? <button onClick={props.clickOnLogin} className={styles.login}>Login</button> : 'Вы вошли как, ' + props.login
+                !props.auth ? <button onClick={props.clickOnLogin} className={styles.login}>Login</button> : 'Вы вошли как, ' + props.login
             }
 
 

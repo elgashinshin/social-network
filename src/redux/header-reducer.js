@@ -5,7 +5,7 @@ const SET_LOGIN = 'SET_LOGIN';
 
 let initialState = {
     login: undefined,
-    resultCode: 1
+    resultCode: false
 }
 
 let headerReducer = (state = initialState, action) => {
@@ -33,8 +33,12 @@ export const setUser = () => {
     return (dispatch) => {
         headerAPI.setLogin()
             .then(data => {
-                dispatch(checkUser(data.resultCode));
-                dispatch(setLogin(data.data.login));
+                if (data.resultCode === 0) {
+                    dispatch(checkUser(true));
+                    dispatch(setLogin(data.data.login));
+                } else {
+                    dispatch(checkUser(false));
+                }
             })
     }
 }

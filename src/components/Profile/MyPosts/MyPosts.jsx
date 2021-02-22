@@ -1,31 +1,38 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addPostCreator, updatePostTextCreator} from "../../../redux/profile-reducer";
+import {Field, reduxForm} from "redux-form";
 
 const MyPosts = (props) => {
-    let onTextPostChange = (ev) => {
-        let textPost = ev.target.value;
-        props.changeTextPost(textPost)
+
+    let addPost = (values) => {
+        props.addPost(values.newPostText);
     };
-    let addPost = () => {
-        let textPost = props.updateText;
-        props.addPost(textPost);
-    };
+
     let postsElement = props.post.map(p => <Post post={p.post} like={p.likeCount}/>);
 
     return (
         <div className={styles.posts}>
             <div className={styles.title}>My posts</div>
-            <div className={styles.wrapper}>
-                <textarea onChange={onTextPostChange} value={props.updateText} className={styles.text} placeholder='Write the post'/>
-                <button onClick={addPost} className={`${styles.add} ${styles.btn}`}>Add post</button>
-            </div>
+            <NewPostFormRedux onSubmit={addPost} />
             <div className={styles.allPosts}>
                 {postsElement}
             </div>
         </div>
     );
 }
+
+const NewPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} className={styles.wrapper}>
+            <Field name={'newPostText'} className={styles.text} placeholder='Write the post' component={'textarea'} />
+            <button className={`${styles.add} ${styles.btn}`}>Add post</button>
+        </form>
+    )
+}
+
+const NewPostFormRedux = reduxForm({
+    form: 'newPost'
+})(NewPostForm)
 
 export default MyPosts;

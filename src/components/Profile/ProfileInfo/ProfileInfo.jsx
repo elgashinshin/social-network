@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './ProfileInfo.module.css';
+import ProfileStatus from "./ProfileStatus";
+
 
 const ProfileInfo = (props) => {
     if(!props.profile) {
@@ -14,6 +16,8 @@ const ProfileInfo = (props) => {
                      src={props.profile.photos.large}/>
                 <div className={styles.name}>{props.profile.fullName}</div>
             </div>
+
+            <ProfileStatus status = {props.status} setStatus={props.setStatus} getStatus = {props.getStatus}/>
 
             <div className={styles.descr}>
                 <div className={styles.contact}>
