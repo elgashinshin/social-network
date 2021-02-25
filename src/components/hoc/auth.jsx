@@ -3,7 +3,7 @@ import React from "react";
 import {Redirect} from "react-router-dom";
 
 const mapStateToPropsWithAuth = (state) => ({
-        isAuth: state.header.resultCode
+        isAuth: state.header.isAuth
 })
 
 export const withAuthRedirect = (Component) => {

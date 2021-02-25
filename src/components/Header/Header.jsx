@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Header.module.css';
+import {NavLink} from "react-router-dom";
 
 const Header = (props) => {
     return (
@@ -9,7 +10,7 @@ const Header = (props) => {
                 <h1 className={styles.name}>Elgasocial</h1>
             </div>
             {
-                !props.auth ? <button onClick={props.clickOnLogin} className={styles.login}>Login</button> : 'Вы вошли как, ' + props.login
+                !props.auth ? <NavLink to={'/login'} className={styles.login}>Login</NavLink> : <div>{props.login} <button onClick={props.logOut}>Logout</button></div>
             }
 
 

@@ -32,13 +32,22 @@ export const usersAPI = {
     }
 }
 
-export const headerAPI = {
+export const authAPI = {
     setLogin() {
         return instance
-        .get('auth/me')
+            .get('auth/me')
             .then(response => {
                 return response.data
             })
+    },
+    logIn(email, password, rememberMe) {
+        return instance
+            .post('auth/login', {email, password, rememberMe})
+
+    },
+    logOut() {
+        return instance
+            .delete('auth/login')
     }
 }
 

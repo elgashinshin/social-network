@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
 import NavBar from './components/Navbar/Navbar';
 import {Route} from "react-router-dom";
 import News from "./components/News/News";
@@ -11,9 +10,18 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileInfo/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import {connect} from "react-redux";
+import {initializeApp} from "./redux/app-reducer";
 
-const App = (props) => {
-    return (
+class App extends React.Component {
+    componentDidMount() {
+        this.props.initializeApp()
+    }
+
+    render() {
+        if (!this.props.initialize) return <div>123</div>
+
+        return (
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <NavBar/>
@@ -25,14 +33,19 @@ const App = (props) => {
                     <Route path='/messages' render={() =>
                         <DialogsContainer/>
                     }/>
-                    <Route path='/news' component={News} />
+                    <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
-                    <Route path='/users' render={() => <UsersContainer/>} />
-                    <Route path='/settings' component={Settings} />
-                    <Route path='/login' render={() => <Login />} />
+                    <Route path='/users' render={() => <UsersContainer/>}/>
+                    <Route path='/settings' component={Settings}/>
+                    <Route path='/login' render={() => <Login/>}/>
                 </main>
             </div>
-    );
+        );
+    }
 }
 
-export default App;
+let mapStateToProps = (state) => ({
+    initialize: state.app.initialize
+})
+
+export default connect(mapStateToProps, {initializeApp})(App);
