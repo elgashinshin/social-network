@@ -2,14 +2,14 @@ import React from 'react';
 import styles from "./Users.module.css";
 import userImage from '../../assects/user_image.png'
 import {NavLink} from "react-router-dom";
+import Paginator from "./Paginator/Paginator";
 
-let Users = (props) => {
-    let maxClickValue = Math.ceil(props.maxUsers / props.count);
-    console.log(maxClickValue);
+let Users = ({onPageChange, users, userFetching, unFollow, follow, currentPage, maxUsers, usersCount}) => {
+
     return (
         <div>
             {
-               props.users.map(u =>
+               users.map(u =>
                     <div key={u.id} className={styles.wrapper}>
                         <div className={styles.userImageWrapper}>
                             <NavLink to={`/profile/${u.id}`}>
@@ -17,11 +17,11 @@ let Users = (props) => {
                             </NavLink>
                             {
                                 u.followed
-                                    ? <button disabled={props.userFetching.some(id => id === u.id)} className={styles.follow} onClick={() => {
-                                        props.unFollow(u.id)
+                                    ? <button disabled={userFetching.some(id => id === u.id)} className={styles.follow} onClick={() => {
+                                        unFollow(u.id)
                                     }}>Unfollow</button>
-                                    : <button disabled={props.userFetching.some(id => id === u.id)} className={styles.follow} onClick={() => {
-                                        props.follow(u.id)
+                                    : <button disabled={userFetching.some(id => id === u.id)} className={styles.follow} onClick={() => {
+                                        follow(u.id)
                                     }}>Follow</button>
                             }
                         </div>
@@ -32,10 +32,7 @@ let Users = (props) => {
                     </div>
                 )
             }
-            {
-                props.fetching ? 'Loading...' : <button onClick={(e) => {props.showMoreUsers()}}>Show more</button>
-            }
-
+            <Paginator onPageChange={onPageChange} currentPage={currentPage} totalItemsCount={maxUsers} usersCount={usersCount}/>
 
 
         </div>

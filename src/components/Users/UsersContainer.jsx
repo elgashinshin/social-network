@@ -8,8 +8,7 @@ import {
     unFollowSuccess,
     userIsFetching,
     requestUsers,
-    showMoreUsers,
-    follow, unFollow
+    follow, unFollow, onPageChange
 } from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
@@ -19,27 +18,23 @@ import {getCountUsers, getIsFetching, getMaxUsers, getPage, getUserFetching, get
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.requestUsers(this.props.page, this.props.count);
+        this.props.requestUsers(this.props.currentPage, this.props.usersCount);
     }
 
     render() {
 
         return <Users
-            showMoreUsers={this.showMoreUsers.bind(this)}
             maxUsers={this.props.maxUsers}
-            count={this.props.count}
+            usersCount={this.props.usersCount}
             users={this.props.users}
             unFollow={this.props.unFollow}
             follow={this.props.follow}
-            page={this.props.page}
+            currentPage={this.props.currentPage}
             fetching={this.props.isFetching}
             userIsFetching={this.props.userIsFetching}
             userFetching={this.props.userFetching}
+            onPageChange={this.props.onPageChange}
         />
-    }
-
-    showMoreUsers() {
-        this.props.showMoreUsers(this.props.page, this.props.count);
     }
 
 }
@@ -47,8 +42,8 @@ class UsersContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         users: getUsers(state),
-        page: getPage(state),
-        count: getCountUsers(state),
+        currentPage: getPage(state),
+        usersCount: getCountUsers(state),
         maxUsers: getMaxUsers(state),
         isFetching: getIsFetching(state),
         userFetching: getUserFetching(state)
@@ -64,7 +59,7 @@ export default connect(mapStateToProps, {
     isFetchingToggle,
     userIsFetching,
     requestUsers,
-    showMoreUsers,
     follow,
-    unFollow
+    unFollow,
+    onPageChange
 })(UsersContainer);

@@ -6,13 +6,14 @@ const SET_USERS = 'SETUSERS';
 const SET_PAGE = 'SETPAGE';
 const SET_CURRENT_USERS = 'SETCURRENTUSERS';
 const IS_FETCHING = 'ISFETCHING';
-const USER_IS_FETCHING = 'USERISFETCHING'
+const USER_IS_FETCHING = 'USERISFETCHING';
+const CHANGE_PAGE = 'CHANGE_PAGE';
 
 
 let initialState = {
     users: [],
-    page: 1,
-    count: 5,
+    currentPage: 1,
+    usersCount: 10,
     maxUsers: 0,
     isFetching: false,
     userIsFetching: []
@@ -50,7 +51,7 @@ let usersReducer = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
             }
 
         case SET_PAGE:
@@ -77,11 +78,18 @@ let usersReducer = (state = initialState, action) => {
                 userIsFetching: action.fetching ? [...state.userIsFetching, action.userId] : state.userIsFetching.filter(id => id !== action.userId)
             }
 
+        case CHANGE_PAGE:
+            return {
+                ...state,
+                currentPage: action.page
+            }
+
         default:
             return state;
     }
 }
 
+export const pageChange = page => ({type: CHANGE_PAGE, page})
 export const followSuccess = userId => ({type: FOLLOW, userId});
 export const unFollowSuccess = userId => ({type: UN_FOLLOW, userId});
 export const setUsers = users => ({type: SET_USERS, users});
@@ -90,6 +98,16 @@ export const currentUsers = maxUsers => ({type: SET_CURRENT_USERS, maxUsers});
 export const isFetchingToggle = fetching => ({type: IS_FETCHING, fetching});
 export const userIsFetching = (fetching, userId) => ({type: USER_IS_FETCHING, fetching, userId});
 
+export const onPageChange = (currentPage) => {
+    return (dispatch) => {
+        usersAPI.getUsers(currentPage, initialState.usersCount)
+            .then(data => {
+                dispatch(pageChange(currentPage))
+                dispatch(requestUsers(currentPage, initialState.usersCount))
+            })
+    }
+}
+
 export const requestUsers = (currentPage, countUsers) => {
     return async (dispatch) => {
         dispatch(isFetchingToggle(true));
@@ -97,17 +115,6 @@ export const requestUsers = (currentPage, countUsers) => {
         dispatch(isFetchingToggle(false));
         dispatch(setUsers(data.items));
         dispatch(currentUsers(data.totalCount));
-    }
-}
-
-export const showMoreUsers = (currentPage, countUsers) => {
-    return async (dispatch) => {
-        dispatch(isFetchingToggle(true));
-        let page = currentPage;
-        dispatch(setPage(++page));
-        let data = await usersAPI.getUsers(page, countUsers)
-        dispatch(isFetchingToggle(false));
-        dispatch(setUsers(data.items));
     }
 }
 

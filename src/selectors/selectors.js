@@ -3,11 +3,11 @@ export const getUsers = (state) => {
 }
 
 export const getPage = (state) => {
-    return state.usersPage.page
+    return state.usersPage.currentPage
 }
 
 export const getCountUsers = (state) => {
-    return state.usersPage.count
+    return state.usersPage.usersCount
 }
 
 export const getMaxUsers = (state) => {
