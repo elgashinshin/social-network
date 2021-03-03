@@ -9,7 +9,6 @@ import {Redirect} from "react-router-dom";
 
 const Login = (props) => {
     let onSubmit = (formData) => {
-        console.log(formData)
         props.logIn(formData.email, formData.password, formData.rememberMe)
     }
     if (props.isAuth === true) {

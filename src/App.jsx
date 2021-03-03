@@ -12,6 +12,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
+import {setUser} from "./redux/login-reducer";
 
 class App extends React.Component {
     componentDidMount() {
@@ -19,7 +20,7 @@ class App extends React.Component {
     }
 
     render() {
-        if (!this.props.initialize) return <div>123</div>
+        if (!this.props.initialize) return <div></div>
 
         return (
             <div className='app-wrapper'>
@@ -48,4 +49,4 @@ let mapStateToProps = (state) => ({
     initialize: state.app.initialize
 })
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default connect(mapStateToProps, {initializeApp, setUser})(App);

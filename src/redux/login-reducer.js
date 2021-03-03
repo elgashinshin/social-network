@@ -34,40 +34,32 @@ export const checkUser = auth => ({type: USER_AUTHORIZED, auth});
 export const setLogin = (login, userId, isAuth) => ({type: SET_LOGIN, login, userId, isAuth});
 
 export const setUser = () => {
-    return (dispatch) => {
-        return authAPI.setLogin()
-            .then(data => {
+    return async (dispatch) => {
+            let data = await authAPI.setLogin();
                 if (data.resultCode === 0) {
                     dispatch(setLogin(data.data.login, data.data.id, true));
                 } else {
                     dispatch(setLogin(null, null, false));
                 }
-            })
     }
 }
 
 export const logIn = (email, password, rememberMe = false) => {
-    return (dispatch) => {
-        authAPI.logIn(email, password, rememberMe)
-            .then(response => {
+    return async (dispatch) => {
+        let response = await authAPI.logIn(email, password, rememberMe)
                 if(response.data.resultCode === 0) {
                     dispatch(setUser())
                 } else {
                     let message = response.data.messages.length > 0 ? response.data.messages[0]: 'Some error';
                     dispatch(stopSubmit('login', {_error: message}))
                 }
-
-            })
     }
 }
 
 export const logOut = () => {
-    return (dispatch) => {
-        authAPI.logOut()
-            .then(response => {
+    return async (dispatch) => {
+        let response = await authAPI.logOut()
                 dispatch(setUser())
-            })
-
     }
 }
 
