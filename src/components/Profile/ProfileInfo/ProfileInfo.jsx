@@ -23,14 +23,7 @@ const ProfileInfo = (props) => {
             <div className={styles.descr}>
                 <div className={styles.contact}>
                     <div className={styles.title}>Contact Information and Social Links</div>
-                    <div>{!props.profile.contacts.facebook ? <></> : 'Facebook: ' + props.profile.contacts.facebook}</div>
-                    <div>{!props.profile.contacts.website ? <></> : 'Website: ' + props.profile.contacts.website}</div>
-                    <div>{!props.profile.contacts.vk ? <></> : 'Вконтакте: ' + props.profile.contacts.vk}</div>
-                    <div>{!props.profile.contacts.twitter ? <></> : 'Twitter: ' + props.profile.contacts.twitter}</div>
-                    <div>{!props.profile.contacts.instagram ? <></> : 'Instagram: ' + props.profile.contacts.instagram}</div>
-                    <div>{!props.profile.contacts.youtube ? <></> : 'Youtube: ' + props.profile.contacts.youtube}</div>
-                    <div>{!props.profile.contacts.github ? <></> : 'Github: ' + props.profile.contacts.github}</div>
-
+                {/*    */}
                 </div>
                 <div className={styles.social}>
                     <div className={styles.title}>Jobs</div>
@@ -42,5 +35,7 @@ const ProfileInfo = (props) => {
         </div>
     );
 }
+
+
 
 export default ProfileInfo;

@@ -10,7 +10,9 @@ const Header = (props) => {
                 <h1 className={styles.name}>Elgasocial</h1>
             </div>
             {
-                !props.auth ? <NavLink to={'/login'} className={styles.login}>Login</NavLink> : <div>{props.login} <button onClick={props.logOut}>Logout</button></div>
+                !props.auth
+                    ? <NavLink to={'/login'} className={styles.login}>Login</NavLink>
+                    : <div>{props.login} <button onClick={props.logOut}>Logout</button></div>
             }
 
 
