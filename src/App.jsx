@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import NavBar from './components/Navbar/Navbar';
-import {Route} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -23,24 +23,31 @@ class App extends React.Component {
         if (!this.props.initialize) return <div></div>
 
         return (
+
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <NavBar/>
 
                 <main className='app-wrapper__content'>
-                    <Route path='/profile/:userId?' render={() =>
-                        <ProfileContainer/>
-                    }/>
-                    <Route path='/messages' render={() =>
-                        <DialogsContainer/>
-                    }/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/settings' component={Settings}/>
-                    <Route path='/login' render={() => <Login/>}/>
+                    <Switch>
+                        <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
+                        <Route path='/profile/:userId?' render={() =>
+                            <ProfileContainer/>
+                        }/>
+                        <Route path='/messages' render={() =>
+                            <DialogsContainer/>
+                        }/>
+                        <Route path='/news' component={News}/>
+                        <Route path='/music' component={Music}/>
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/settings' component={Settings}/>
+                        <Route path='/login' render={() => <Login/>}/>
+                        <Route path='*' render={() => <div>404</div>}/>
+                    </Switch>
                 </main>
+
             </div>
+
         );
     }
 }
