@@ -7,7 +7,10 @@ let ProfileStatus = (props) => {
     let [status, setStatus] = useState(props.status)
 
     const activateEditMode = () => {
-        setEditMode(true)
+        if (props.isOwner) {
+            setEditMode(true)
+        }
+
     }
 
     const deactivateEditMode = () => {

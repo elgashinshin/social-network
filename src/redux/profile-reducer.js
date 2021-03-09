@@ -1,8 +1,11 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 let ADD_POST = 'ADD-POST';
 let SET_USER = 'SET-USER';
 let SET_STATUS = 'SET-STATUS';
+let SAVE_PHOTO = 'SAVE_PHOTO';
+let UPDATE_PROFILE = 'UPDATE_PROFILE';
 
 let initialState = {
     posts: [],
@@ -32,6 +35,16 @@ let profileReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
+
+        case SAVE_PHOTO:
+            debugger
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: action.photos
+                }
+            }
         default:
             return state;
     }
@@ -40,6 +53,8 @@ let profileReducer = (state = initialState, action) => {
 export const addPostCreator = postValue => ({type: ADD_POST, textPost: postValue});
 export const setUserSuccess = profile => ({type: SET_USER, profile});
 export const setStatus = status => ({type: SET_STATUS, status});
+export const savePhotoSuccess = photos => ({type: SAVE_PHOTO, photos});
+export const updateProfileSuccess = info => ({type: SAVE_PHOTO, info});
 
 export const setUserId = (userId) => {
     return async (dispatch) => {
@@ -60,6 +75,39 @@ export const setStatusProfile = (status) => {
         let data = await profileAPI.setProfileStatus(status)
         if (data.resultCode === 0) {
             dispatch(setStatus(status))
+        }
+    }
+}
+
+export const savePhoto = (photo) => {
+    return async (dispatch) => {
+        debugger
+        let response = await profileAPI.updatePhoto(photo)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccess(response.data.data.photos))
+        }
+    }
+}
+
+export const updateProfile = (info) => {
+    return async (dispatch, getState) => {
+        let userId = getState().header.userId;
+        let response = await profileAPI.updateProfileInfo(info)
+        if (response.data.resultCode === 0) {
+            dispatch(setUserId(userId))
+        } else {
+            let message = response.data.messages[0]
+            let number = message.indexOf('->');
+            let messageLegth = message.length;
+            let newMessage = message.slice(number + 2, messageLegth - 1)
+            let test = newMessage.toLowerCase();
+
+           dispatch(stopSubmit('profilieInfo', {
+               'contacts' : {
+                    [test] : response.data.messages[0]
+               }
+           }))
+            return Promise.reject();
         }
     }
 }

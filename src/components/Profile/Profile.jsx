@@ -2,20 +2,20 @@ import React from 'react';
 import styles from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {getStatus, setStatusProfile} from "../../redux/profile-reducer";
 
-const Profile = (props) => {
+const Profile = ({profile, status, setStatusProfile, store, savePhoto, isOwner, updateProfile}) => {
     return (
         <div>
             <div>
                 <img className={styles.background} src='https://i.ytimg.com/vi/-ZGlaAxB7nI/maxresdefault.jpg'/>
             </div>
 
+
             <div className={styles.wrapper}>
-                <ProfileInfo profile = {props.profile} status = {props.status} setStatus = {props.setStatusProfile}/>
+                <ProfileInfo updateProfile={updateProfile} isOwner={isOwner} savePhoto={savePhoto} profile = {profile} status = {status} setStatus = {setStatusProfile}/>
             </div>
             <MyPostsContainer
-                store={props.store}
+                store={store}
             />
         </div>
     );

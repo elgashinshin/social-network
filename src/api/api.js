@@ -40,9 +40,9 @@ export const authAPI = {
                 return response.data
             })
     },
-    logIn(email, password, rememberMe) {
+    logIn(email, password, rememberMe, captcha) {
         return instance
-            .post('auth/login', {email, password, rememberMe})
+            .post('auth/login', {email, password, rememberMe, captcha})
 
     },
     logOut() {
@@ -72,5 +72,26 @@ export const profileAPI = {
             .then(response => {
                 return response.data
             })
+    },
+    updatePhoto(photo) {
+        const formData = new FormData();
+        formData.append('image', photo);
+        return instance
+            .put('profile/photo', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+    },
+    updateProfileInfo(info) {
+        return instance
+            .put('profile', info)
+    }
+}
+
+export const securityAPI = {
+    getCaptcha() {
+        return instance
+            .get('security/get-captcha-url')
     }
 }
