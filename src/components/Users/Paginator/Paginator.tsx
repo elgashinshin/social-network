@@ -1,7 +1,15 @@
 import React, {useState} from 'react'
 import styles from './Paginator.module.css'
 
-const Paginator = ({onPageChange, totalItemsCount, usersCount, portionSize = 10, currentPage}) => {
+type PropsType = {
+    onPageChange: (currentPage: number) => void
+    totalItemsCount: number
+    usersCount: number
+    currentPage: number | any
+    portionSize?: number
+}
+
+const Paginator: React.FC<PropsType> = ({onPageChange, totalItemsCount, usersCount, portionSize = 10, currentPage}) => {
     let pagesCount = Math.ceil(totalItemsCount / usersCount)
 
     let pages = []
@@ -24,7 +32,8 @@ const Paginator = ({onPageChange, totalItemsCount, usersCount, portionSize = 10,
                         return (
                             <span onClick={(e) => {
                                 onPageChange(p)
-                            }} className={currentPage === p && styles.currentPage} key={p}>{p} </span>
+                            }} className={currentPage || currentPage === p && styles.currentPage} // хз че с ним ругается на currentPage === p
+                                  key={p}>{p} </span>
                         )
                     })
             }

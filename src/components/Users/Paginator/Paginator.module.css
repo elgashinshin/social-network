@@ -1,3 +1,6 @@
 .currentPage {
     color: red;
 }
+span {
+    cursor: pointer;
+}

@@ -6,22 +6,28 @@ let initialState = {
     initialize: false
 }
 
-let appReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState
+
+let appReducer = (state = initialState, action : any) : InitialStateType  => {
     switch(action.type) {
         case INITIALIZED:
             return {
                 ...state,
-                initialize: true
+                initialize: true,
             }
         default:
             return state;
     }
 }
 
-export const initializeSuccess = () => ({type: INITIALIZED})
+type InitializeSuccessActionType = {
+    type: typeof INITIALIZED
+}
+
+export const initializeSuccess = () : InitializeSuccessActionType => ({type: INITIALIZED})
 
 export const initializeApp = () => {
-    return (dispatch) => {
+    return (dispatch : any) => {
         let me = dispatch(setUser());
         Promise.all([me]).then(() => {
             dispatch(initializeSuccess())

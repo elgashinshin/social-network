@@ -53,10 +53,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let UrlDataContainer = withRouter(ProfileContainer);
-
-// export default connect(mapStateToProps, {setUserSuccess, setUserId, getStatus, setStatusProfile})(UrlDataContainer, ProfileContainer);
-
 export default compose(
     connect(mapStateToProps, {setUserSuccess, setUserId, getStatus, setStatusProfile, savePhoto, updateProfile}),
     withRouter

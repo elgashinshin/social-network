@@ -1,28 +1,40 @@
 import {connect} from "react-redux";
 import {
-    currentUsers,
-    followSuccess,
-    isFetchingToggle,
-    setPage,
-    setUsers,
-    unFollowSuccess,
     userIsFetching,
     requestUsers,
-    follow, unFollow, onPageChange
+    follow, unFollow, onPageChange, UserType, UserIsFetchingActionType
 } from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
 import {getCountUsers, getIsFetching, getMaxUsers, getPage, getUserFetching, getUsers} from "../../selectors/selectors";
+import {AppStateType} from "../../redux/redux-store";
 
+type MapPropsType = {
+    users: Array<UserType>
+    currentPage: number
+    usersCount: number
+    maxUsers: number
+    isFetching: boolean
+    userFetching: Array<number>
+}
+type DispatchPropsType = {
+    requestUsers: (currentPage: number, countUsers: number) => void
+    unFollow: (userId: number) => void
+    follow: (userId: number) => void
+    userIsFetching: (fetching: boolean, userId: number) => void
+    onPageChange: (currentPage: number) => void
+}
+type OwnPropsType = {
 
+}
+type PropsType = MapPropsType & DispatchPropsType
 
-class UsersContainer extends React.Component {
+class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
         this.props.requestUsers(this.props.currentPage, this.props.usersCount);
     }
 
     render() {
-
         return <Users
             maxUsers={this.props.maxUsers}
             usersCount={this.props.usersCount}
@@ -30,8 +42,6 @@ class UsersContainer extends React.Component {
             unFollow={this.props.unFollow}
             follow={this.props.follow}
             currentPage={this.props.currentPage}
-            fetching={this.props.isFetching}
-            userIsFetching={this.props.userIsFetching}
             userFetching={this.props.userFetching}
             onPageChange={this.props.onPageChange}
         />
@@ -39,7 +49,7 @@ class UsersContainer extends React.Component {
 
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) : MapPropsType => {
     return {
         users: getUsers(state),
         currentPage: getPage(state),
@@ -49,17 +59,11 @@ let mapStateToProps = (state) => {
         userFetching: getUserFetching(state)
     }
 }
-
-export default connect(mapStateToProps, {
-    followSuccess,
-    unFollowSuccess,
-    setUsers,
-    setPage,
-    currentUsers,
-    isFetchingToggle,
+//TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState
+export default connect<MapPropsType, DispatchPropsType, OwnPropsType, AppStateType >(mapStateToProps, {
     userIsFetching,
     requestUsers,
     follow,
     unFollow,
     onPageChange
-})(UsersContainer);
+} as DispatchPropsType)(UsersContainer);
