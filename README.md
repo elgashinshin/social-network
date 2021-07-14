@@ -1,5 +1,5 @@
 # Социальная сеть
 ## Технологии: React, Redux
-https://social-network-elgashinshin.herokuapp.com/
+elgashinshin.github.io
 ### Логин: brokielgashin@gmail.com
 ### Пароль: admin
