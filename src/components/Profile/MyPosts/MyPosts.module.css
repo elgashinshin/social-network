@@ -36,7 +36,7 @@
 
 .btn {
     outline: none;
-    width: 97px;
+    min-width: 97px;
     border: none;
     height: 35px;
     font-size: 15px;

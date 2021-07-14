@@ -33,11 +33,11 @@ let Users: React.FC<PropsType> = ({onPageChange, users, userFetching, unFollow, 
                                     ? <button disabled={userFetching.some(id => id === u.id)} className={styles.follow}
                                               onClick={() => {
                                                   unFollow(u.id)
-                                              }}>Unfollow</button>
+                                              }}>Отписаться</button>
                                     : <button disabled={userFetching.some(id => id === u.id)} className={styles.follow}
                                               onClick={() => {
                                                   follow(u.id)
-                                              }}>Follow</button>
+                                              }}>Подписаться</button>
                             }
                         </div>
                         <div className={styles.fullName}>{u.name}</div>

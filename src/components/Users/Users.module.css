@@ -4,6 +4,7 @@
     align-items: center;
 }
 .userImageWrapper {
+    align-items: center;
     display: flex;
     flex-direction: column;
 }
@@ -14,7 +15,7 @@
     display: block;
     margin-top: 5px;
     outline: none;
-    width: 75px;
+    min-width: 75px;
     border: none;
     height: 25px;
     font-size: 15px;

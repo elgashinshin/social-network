@@ -13,7 +13,7 @@ const MyPosts = (props) => {
 
     return (
         <div className={styles.posts}>
-            <div className={styles.title}>My posts</div>
+            <div className={styles.title}>Мои посты</div>
             <NewPostFormRedux onSubmit={addPost} />
             <div className={styles.allPosts}>
                 {postsElement}
@@ -25,8 +25,8 @@ const MyPosts = (props) => {
 const NewPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={styles.wrapper}>
-            <Field name={'newPostText'} className={styles.text} placeholder='Write the post' component={'textarea'} />
-            <button className={`${styles.add} ${styles.btn}`}>Add post</button>
+            <Field name={'newPostText'} className={styles.text} placeholder='Напишите запись' component={'textarea'} />
+            <button className={`${styles.add} ${styles.btn}`}>Добавить запись</button>
         </form>
     )
 }

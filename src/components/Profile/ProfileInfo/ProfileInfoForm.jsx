@@ -9,14 +9,14 @@ import styles from "./ProfileInfo.module.css";
 const ProfileInfoForm = ({profile, handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit}>
-            <button>Save</button>
+            <button>Сохранить</button>
             <br/>
             <div>
-                <b>FullName: </b>
+                <b>Полное имя: </b>
                 <Field name={'fullName'} component={Input}/>
             </div>
             <div>
-                <b>AboutMe: </b>
+                <b>Обо мне: </b>
                 <Field validate={[isEmpty]} name={'aboutMe'} component={Input}/>
             </div>
             {
@@ -30,7 +30,7 @@ const ProfileInfoForm = ({profile, handleSubmit}) => {
                 })
             }
             <div className={styles.social}>
-                <div className={styles.title}>Jobs</div>
+                <div className={styles.title}>Работа</div>
                 <div>
                     Ищу работу: <Field component={Input} name={'lookingForAJob'} type={'checkbox'}/>
                 </div>

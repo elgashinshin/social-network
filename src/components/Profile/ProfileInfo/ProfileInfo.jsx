@@ -23,7 +23,7 @@ const ProfileInfo = ({profile, status, setStatus, getStatus, savePhoto, isOwner,
     }
 
     const onSubmit = (formData) => {
-        updateProfile(formData).then( () => {
+        updateProfile(formData).then(() => {
             setEditMode(false)
         })
 
@@ -37,8 +37,8 @@ const ProfileInfo = ({profile, status, setStatus, getStatus, savePhoto, isOwner,
             </div>
             {
                 isOwner
-                    && <div>
-                    <b>Update Photo </b>
+                && <div>
+                    <b>Изменить фото</b>
                     <input onChange={onMainPhotoSelected} type="file"/>
                 </div>
             }
@@ -47,10 +47,11 @@ const ProfileInfo = ({profile, status, setStatus, getStatus, savePhoto, isOwner,
 
             <div className={styles.descr}>
                 <div className={styles.title}>
-                    Contact Information and Social Links
+                    Контактная информация
                 </div>
                 {
-                    editMode ? <ProfileInfoForm initialValues={profile}  onSubmit={onSubmit} profile={profile} /> : <ProfileData changeEditMode={changeEditMode} isOwner={isOwner} profile={profile} />
+                    editMode ? <ProfileInfoForm initialValues={profile} onSubmit={onSubmit} profile={profile}/> :
+                        <ProfileData changeEditMode={changeEditMode} isOwner={isOwner} profile={profile}/>
                 }
 
             </div>
@@ -58,14 +59,20 @@ const ProfileInfo = ({profile, status, setStatus, getStatus, savePhoto, isOwner,
     );
 }
 
-const ProfileData = ({profile, isOwner, changeEditMode }) => {
+const ProfileData = ({profile, isOwner, changeEditMode}) => {
     return (
         <div>
             {
-                isOwner && <button onClick={changeEditMode}>Edit</button>
+                isOwner && <button onClick={changeEditMode}>Редактировать</button>
             }
 
             <div className={styles.contact}>
+                <div>
+                    <b>Полное имя: </b> {profile.fullName}
+                </div>
+                <div>
+                    <b>Обо мне: </b> {profile.aboutMe}
+                </div>
 
                 {
                     Object.keys(profile.contacts).map(key => {
@@ -76,7 +83,7 @@ const ProfileData = ({profile, isOwner, changeEditMode }) => {
                 }
             </div>
             <div className={styles.social}>
-                <div className={styles.title}>Jobs</div>
+                <div className={styles.title}>Работа</div>
                 <div>Ищу работу: {profile.lookingForAJob === true ? 'Да =)' : 'Нет =('}</div>
                 <div>{profile.lookingForAJob === true ? 'Описание для работы: ' + profile.lookingForAJobDescription : <></>}</div>
             </div>
